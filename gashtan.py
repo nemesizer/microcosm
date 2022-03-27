@@ -1,0 +1,144 @@
+import random
+import itertools
+import nltk
+from nltk.corpus import words as english
+
+computer_lines = [["IN THE LAND OF THE DRAGON"],
+["EXCHANGE OF APPLES"],
+["A MESSAGE FROM JUPITER"],
+["A PEANUT FOR SEMELIA"],
+["A COMMODORE AT TRAFALGAR"],
+["APRICOTS AND NECTARINES"],
+["THE GENIE IN THE CHURCH"],
+["SHARP DAGGERS CONCEALED"],
+["EMPEROR WANG MOURNS"],
+["HE CARRIES THE TORCH"],
+["THE VICTOR REJOICES"],
+["A FORTUNE IS LOST"],
+["A PET TAKES FLIGHT"],
+["key goes here"]]
+
+jesus_lines = [["OF A PRINCE IN THE EAST", "A MAN OF NATURE"], 
+["WITH BLOOD ON HIS HAND", "LIFE IN THE TEMPLE", "SCHOLASTIC ARGUMENTS", "TABLES ARE TURNED"],
+["A GIFT TO A KING", "SUMMONED TO HEAVEN", "A MODEL OF PERFECTION", "SITTING IN THE THRONE"],
+["THE BIRTH OF A CHILD", "OF THE RULER OF THE WORLD", "A FALSE ACCUSATION", "A PLEA FOR MERCY"],
+["THE GUARD SLEEPS"],
+["HE CHANGED HIS COAT", "RETURN OF A LOVED ONE", "DEATH OF A KING", "A KING IS CROWNED"],
+["TRIAL BEFORE THE COUNCIL"],
+["THE SACRIFICE IS READY", "BEHOLD THE HEIR APPARENT", "CHIEF OF THE REBELS", "CONSPIRATORS DISCOVERED"],
+["DEFEAT OF A PLOT", "AN INNOCENT TRAITOR", "TAKEN TO THE WEST", "THE PEOPLE ARE HOSTILE"],
+["THE ACCUSER IS SILENCED", "A SON TAKES POWER", "SWORDS CROSS IN ANGER", "THE EARTH TREMBLES"],
+["KING WITH NO CROWN", "TRIED BY PRIESTS", "CRUCIFIED IN CHAINS", "A LOYAL HEART", "A FRIENDS ASSISTANCE"],
+["A TRIAL FOR TREASON", "THE VERDICT IS DEATH", "A SECRET BURIAL"],
+["DEATH IN THE OLD RELIGION", "AMONG HIS OWN PEOPLE", "A GREAT SACRIFICE", "AN EARLY GRAVE", "BURIED ALIVE", "A PEACEFUL CONCLUSION", "A FALSE ACCUSATION"],
+["key goes here"]]
+
+washington_lines = [["CHOSEN BY THE PEOPLE", "A MAN OF NATURE", "A COUNCIL OF THREE"],
+["A GENERAL IS CHOSEN", "TO THE FIRST OF THE HOUSE", "CREATED TEN OF TEN", "THE DRAGON SLAYER"],
+["THE HONEST LUMBERJACK", "BOTHWAYS HAS GOT HIM", "SITTING IN THE THRONE"],
+["ONE OF SIX", "HE ACQUIRES A NEW NAME", "A FALSE ACCUSATION", "A PLEA FOR MERCY"],
+["TOBACCO FOR LODGING", "SOLDIER IN THE SOUTH", "THE FLEET IS LOST", "REBELS IN THE SOUTH", "PRISONER IN THE WOOD", "RUNNER OF CONTRABAND"],
+["HE CHANGED HIS COAT", "A MARRIAGE ARRANGED", "HOW DO KING TOSH", "A KING IS CROWNED"],
+["A WIDOW AND CHILDREN", "HE SAT FOR A PICTURE", "HE WEARS A DIFFERENT CROWN", "TRIAL BEFORE THE COUNCIL", "HE DOUBTS HIS SON", "THE NONCONFORMIST"],
+["CHIEF OF THE REBELS", "A MAN OF LETTERS", "HE REJECTS A PROPOSAL", "THE OLD RULER IS BANISHED", "A SOCIAL LION"],
+["FIGHT FOR FREEDOM", "AN INNOCENT TRAITOR", "A COUNCIL OF REGENTS", "THE PEOPLE ARE HOSTILE"],
+["THE MOUNTAIN OF GROG", "THE RETURN OF A GIFT", "AMERICA DISCOVERS ENGLAND", "A SON TAKES POWER"],
+["AN EMPIRE DIVIDED", "KING WITH NO CROWN", "A LOYAL HEART", "THE VICTOR REJOICES", "A GERMAN CUTS HIM DOWN"],
+["FOUNDER OF A NATION", "SOME SLAVES GO FREE", "A TRIAL FOR TREASON"], 
+["A PET TAKES FLIGHT", "DEATH IN THE OLD RELIGION", "DIED IN POVERTY"],
+["key goes here"]]
+
+journey_lines = [["RETURNING HOME", "THE SHIPS ARE AT SEA"],
+["THE PIRATES WON THE PRIZE"],
+["SUMMONED TO HEAVEN", "HE RETURNS WITH HER FATHER", "JOURNEY BY WATER", "JOURNEY IN DISGUISE"],
+["JOURNEY BY RIVER"],
+["SET SAIL FOR THE SOUTH"],
+["RETURN OF A LOVED ONE"],
+["AN AMERICAN SAILOR"],
+["A VOYAGE TO FRANCE"],
+["TAKEN TO THE WEST", "A VOYAGE BY WATER", "JOURNEY IN THE DARK"],
+["PARTING OF FRIENDS", "AMERICA DISCOVERS ENGLAND", "THE CAPTIVES ESCAPE", "THEY RETURN TO THE JEWEL", "THE MOUNTAIN OF GROG"],
+["THEY RETURN SEPARATELY", "TO A FOOLS PARADISE"],
+["PARTING OF FRIENDS", "JOURNEY BY SEA", "STORMY CROSSING", "THE SHIPS ARE FOUND", "AN ARDUOUS JOURNEY", "IN A DISTANT LAND"],
+["LAND OF THE CYCLOPS", "A PET TAKES FLIGHT"],
+["key goes here"]]
+
+# combinations = [list(line) for line in itertools.product(*washington_lines)]
+# combinations = [list(line) for line in itertools.product(*computer_lines)]
+# combinations = [list(line) for line in itertools.product(*jesus_lines)]
+combinations = [list(line) for line in itertools.product(*journey_lines)]
+
+keys = [
+["EUJGZBBEIKUVQFQCGKNQ", 8],
+["JBFCEGMQREYHBVHNLVZP", 13],
+["DUJJTWNDXAGTBKMJVTMD", 11],
+["VMHOKWMIZWKZTJDYFKSG", 1],
+["EKSYCFHEQTWUBEBTELCO", 13],
+["XBNVKXBPNGCYQSIUPJLV", 5],
+["KJYQKGAWZYAGVEJVKGUK", 2],
+["IVYIZJJOLFOGQOPJJEXY", 14],
+["EGEQOIOTFADVVJNNSGDL", 5],
+["ZGTEVNDRXKOSNHIHAEMU", 3],
+["TFRQAMYUWOLXKTDNBHIW", 1],
+["CPMVGKHPMEGPIDHQFJDF", 9],
+["WYTAPRVJHYHUJLTUTMVZ", 5],
+["JLIFDEPEKIUTCRBLWRLG", 10],
+["BKXKWEBUZOXSZCIFLAYC", 7],
+["PPRBIMCYJVRLKVXPUUGF", 11],
+["HMTFSDTGQJCIAZLDDCWB", 1],
+["APYHZHJMCWURMHPFWVIK", 1],
+["JQQZOZRUZPZRQSHBUQJE", 1],
+["FZYMVFQGZOKDLJMIMPGQ", 1],
+["HTJXDUFPLITWUYLCLTSO", 1]]
+
+words = set(english.words())
+
+def contains_words(message):
+  for word in message.split():
+    if not(word in words):
+        return False
+  return True
+
+def offset_lines(lines, offset):
+  offset -= 1
+  return lines[offset:] + lines[0:offset]
+  
+
+for lines in combinations:
+  start = 0
+  key_number = 0
+  
+  for key, offset in keys:
+    key_number += 1
+    lines[13] = key
+
+    copy_lines = offset_lines(lines, offset)
+    
+    n = 0
+    m = []
+    for i in range(20):
+      m.append(start)
+      
+    for line in copy_lines:
+      for letter in line:
+        x = ord(letter)
+        m[n] += x
+        n += 1
+        if (n == 20):
+          n = 0
+    
+    message = ""
+    for i in range(20):
+      while m[i] > 0:
+        m[i] -= 26
+    
+      m[i] += ord("z")
+      if m[i] == ord("z"):
+        m[i] = 32
+      message += chr(m[i])
+    
+    if contains_words(message):
+      print (lines)
+      print (key)
+      print (message)
+      print ()
