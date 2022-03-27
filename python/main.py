@@ -1,4 +1,3 @@
-import gc
 import itertools
 from functools import cache
 from multiprocessing import Pool
@@ -45,7 +44,7 @@ def gen_message(m: list[int]):
     return message
 
 
-def solve_lines_key(lines, key: str, offset: int):
+def solve_lines_key(lines: list[str], key: str, offset: int):
     lines[13] = key
 
     n = 0
@@ -67,12 +66,6 @@ def solve_lines_key(lines, key: str, offset: int):
         print(message)
         print()
 
-    del message
-    del m
-    del n
-    del lines
-    gc.collect()
-
 
 def solve_key(key):
     # import cProfile
@@ -83,8 +76,8 @@ def solve_key(key):
 
     # with cProfile.Profile() as pr:
 
-    for lines in combinations:
-        solve_lines_key([*lines], key, offset)
+    for i, lines in enumerate(combinations):
+        solve_lines_key([*(str(line) for line in lines)], key, offset)
 
     # stats = pstats.Stats(pr)
     # stats.sort_stats(pstats.SortKey.TIME)
