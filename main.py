@@ -1,4 +1,5 @@
 import itertools
+from multiprocessing import Pool
 from sys import argv
 
 from nltk.corpus import words as english
@@ -6,7 +7,7 @@ from nltk.corpus import words as english
 from data import LINES, keys
 
 if len(argv) < 2:
-  argv.append('computer')
+    argv.append('computer')
 
 combinations = [list(line) for line in itertools.product(*LINES[argv[1]])]
 
@@ -66,8 +67,8 @@ def solve_line(lines):
 
 
 def main():
-    for lines in combinations:
-        solve_line(lines)
+    pool = Pool()
+    pool.map(solve_line, combinations)
 
 
 if __name__ == '__main__':
