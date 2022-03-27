@@ -1,10 +1,14 @@
 import itertools
+from sys import argv
 
 from nltk.corpus import words as english
 
 from data import LINES, keys
 
-combinations = [list(line) for line in itertools.product(*LINES['computer'])]
+if len(argv) < 2:
+  argv.append('computer')
+
+combinations = [list(line) for line in itertools.product(*LINES[argv[1]])]
 
 words = set(english.words())
 
