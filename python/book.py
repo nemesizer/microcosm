@@ -1,4 +1,4 @@
-BOOK = [
+BOOK: list[list[str]] = [
     [  # 1
         "OF A PRINCE IN THE EAST",
         "A MAN OF NATURE",

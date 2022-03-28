@@ -1,3 +1,5 @@
+from book import BOOK
+
 LINES = {
     'computer': (  # 0.37 seconds
         ("IN THE LAND OF THE DRAGON",),
@@ -68,9 +70,12 @@ LINES = {
          "AN ARDUOUS JOURNEY", "IN A DISTANT LAND"),
         ("LAND OF THE CYCLOPS", "A PET TAKES FLIGHT"),
         ["key goes here"]
-    )
+    ),
+
+    'all': [[] for _ in range(14)]
 }
 
+# """
 keys = (
     ("EUJGZBBEIKUVQFQCGKNQ", 8),
     ("JBFCEGMQREYHBVHNLVZP", 13),
@@ -87,9 +92,28 @@ keys = (
     ("WYTAPRVJHYHUJLTUTMVZ", 5),
     ("JLIFDEPEKIUTCRBLWRLG", 10),
     ("BKXKWEBUZOXSZCIFLAYC", 7),
-    ("PPRBIMCYJVRLKVXPUUGF", 11)
+    ("PPRBIMCYJVRLKVXPUUGF", 11),
 )
-
+"""
+keys = (
+    ("EUJGZBBEIKUVQFQCGKNQ", 1),
+    ("JBFCEGMQREYHBVHNLVZP", 1),
+    ("DUJJTWNDXAGTBKMJVTMD", 1),
+    ("VMHOKWMIZWKZTJDYFKSG", 1),
+    ("EKSYCFHEQTWUBEBTELCO", 1),
+    ("XBNVKXBPNGCYQSIUPJLV", 1),
+    ("KJYQKGAWZYAGVEJVKGUK", 1),
+    ("IVYIZJJOLFOGQOPJJEXY", 1),
+    ("EGEQOIOTFADVVJNNSGDL", 1),
+    ("ZGTEVNDRXKOSNHIHAEMU", 1),
+    ("TFRQAMYUWOLXKTDNBHIW", 1),
+    ("CPMVGKHPMEGPIDHQFJDF", 1),
+    ("WYTAPRVJHYHUJLTUTMVZ", 1),
+    ("JLIFDEPEKIUTCRBLWRLG", 1),
+    ("BKXKWEBUZOXSZCIFLAYC", 1),
+    ("PPRBIMCYJVRLKVXPUUGF", 1)
+)
+"""
 # 1 1 2 3 5 5 5 7 8 9 10 11 11 13 13 14
 
 # 1 1 2 3 5 8 13
@@ -111,3 +135,9 @@ keys = (
 ("FZYMVFQGZOKDLJMIMPGQ", 13),
 ("HTJXDUFPLITWUYLCLTSO", 13)
 """
+
+for i, page in enumerate(BOOK):
+    for j, line in enumerate(page):
+        LINES['all'][i].append(line)
+
+LINES['all'][-1] = ['key goes here']

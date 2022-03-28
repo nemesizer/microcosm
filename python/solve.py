@@ -1,3 +1,4 @@
+import gc
 import itertools
 from functools import cache
 from multiprocessing import Pool
@@ -11,8 +12,12 @@ from data import LINES, keys
 words = set(english.words())
 
 theme = 'computer'
-if len(argv) == 2:
+if len(argv) >= 2:
     theme = argv[1]
+
+start_idx = 0
+if len(argv) >= 3:
+    start_idx = int(argv[2])
 
 combinations = [list(line) for line in itertools.product(*LINES[theme])]
 
@@ -70,6 +75,11 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
         print(message)
         print()
 
+    del message
+    del lines
+    del m
+    del n
+
 
 def solve_key(key):
     # import cProfile
@@ -77,11 +87,20 @@ def solve_key(key):
 
     key, offset = key
     start = perf_counter()
+    local_start = start
+
+    gc.collect()
+    gc.enable()
 
     # with cProfile.Profile() as pr:
 
-    for i, lines in enumerate(combinations):
-        solve_lines_key([*(str(line) for line in lines)], key, offset)
+    for i in range(start_idx, len(combinations)):
+        solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
+
+        if i % 10 ** 5 == 0 and i != 0:
+            now = perf_counter()
+            print(f'Key {key} reached {i} in {now - local_start} seconds')
+            local_start = now
 
     # stats = pstats.Stats(pr)
     # stats.sort_stats(pstats.SortKey.TIME)
