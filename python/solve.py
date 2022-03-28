@@ -29,9 +29,10 @@ def contains_words(msg):
     return True
 
 
-def gen_message(m: list[int]):
+def gen_message(m: list[int], offset: int):
     message = ""
     for i in range(20):
+        #m[i] += offset
         m[i] %= 26
         while m[i] > 0:
             m[i] -= 26
@@ -45,12 +46,15 @@ def gen_message(m: list[int]):
 
 
 def solve_lines_key(lines: list[str], key: str, offset: int):
+
     lines[13] = key
 
     n = 0
     m = [0] * 20
 
-    for line in lines[offset - 1:] + lines[0:offset - 1]:
+    lines = lines[offset - 1:] + lines[0:offset - 1]
+
+    for line in lines:
         for letter in line:
             x = ord(letter)
             m[n] += x
@@ -58,7 +62,7 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
             if n == 20:
                 n = 0
 
-    message = gen_message(m)
+    message = gen_message(m, offset)
 
     if contains_words(message):
         print(lines)

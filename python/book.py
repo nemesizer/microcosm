@@ -18,7 +18,8 @@ BOOK = [
         "OF A MUSICIAN",
         "FROM THE MARINERS CHAPEL",
         "THE HELMSMAN SINGS",
-        "THE SHIPS ARE AT SEA"],
+        "THE SHIPS ARE AT SEA"
+    ],
 
     [  # 2
         "WITH BLOOD ON HIS HAND",
@@ -39,7 +40,8 @@ BOOK = [
         "CREATED TEN OF TEN",
         "A GENERAL IS CHOSEN",
         "IN THE HEAT OF BATTLE",
-        "THE PIRATES WON THE PRIZE"],
+        "THE PIRATES WON THE PRIZE"
+    ],
 
     [  # 3
         "SITTING IN THE THRONE",
@@ -60,7 +62,8 @@ BOOK = [
         "BOTHWAYS HAS GOT HIM",
         "A CONFUSION OF PROMISES",
         "THE SMELL OF LEATHER",
-        "JOURNEY IN DISGUISE"],
+        "JOURNEY IN DISGUISE"
+    ],
 
     [  # 4
         "SHELTERED BY BANKS",
@@ -81,7 +84,8 @@ BOOK = [
         "HIS BROTHER IS KILLED",
         "A FALSE ACCUSATION",
         "A PLEA FOR MERCY",
-        "QUESTIONS MUST BE ANSWERED"],
+        "QUESTIONS MUST BE ANSWERED"
+    ],
 
     [  # 5
         "EGGS MUST BE BROKEN",
@@ -102,7 +106,8 @@ BOOK = [
         "A VELVET SUIT",
         "TOBACCO FOR LODGING",
         "SOLDIER IN THE SOUTH",
-        "RUNNER OF CONTRABAND"],
+        "RUNNER OF CONTRABAND"
+    ],
 
     [  # 6
         "A BANQUET OF KINGS",
@@ -165,7 +170,8 @@ BOOK = [
         "THE OLD RULER IS BANISHED",
         "A SOCIAL LION",
         "A VOYAGE TO FRANCE",
-        "THE DISTANT MOUNTAINS"],
+        "THE DISTANT MOUNTAINS"
+    ],
 
     [  # 9
         "EMPEROR WANG MOURNS",
@@ -186,7 +192,8 @@ BOOK = [
         "TAKEN TO THE WEST",
         "RETURN TO THE JEWEL",
         "A VOYAGE BY WATER",
-        "JOURNEY IN THE DARK"],
+        "JOURNEY IN THE DARK"
+    ],
 
     [  # 10
         "TWO DAUGHTERS ONE HUSBAND",
@@ -207,7 +214,8 @@ BOOK = [
         "SWORDS CROSS IN ANGER",
         "THE EARTH TREMBLES",
         "THE CAPTIVES ESCAPE",
-        "THEY RETURN TO THE JEWEL"],
+        "THEY RETURN TO THE JEWEL"
+    ],
 
     [  # 11
         "THE CONTEST RENEWED",
@@ -228,7 +236,8 @@ BOOK = [
         "HER SLAVE JEWEL BEARER",
         "TRIED BY PRIESTS",
         "CRUCIFIED IN CHAINS",
-        "A GERMAN CUTS HIM DOWN"],
+        "A GERMAN CUTS HIM DOWN"
+    ],
 
     [  # 12
         "A TRIAL FOR TREASON",
@@ -249,7 +258,8 @@ BOOK = [
         "A FINAL MEETING",
         "A SECRET BURIAL",
         "AN ARDUOUS JOURNEY",
-        "IN A DISTANT LAND"],
+        "IN A DISTANT LAND"
+    ],
 
     [  # 13
         "LAND OF THE CYCLOPS",
@@ -270,5 +280,6 @@ BOOK = [
         "SHE WIELDS POWER",
         "A FALSE ACCUSATION",
         "A PET TAKES FLIGHT",
-        "A PEACEFUL CONCLUSION"]
+        "A PEACEFUL CONCLUSION"
+    ]
 ]
