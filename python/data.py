@@ -1,5 +1,5 @@
 LINES = {
-    'computer': (
+    'computer': (  # 0.37 seconds
         ("IN THE LAND OF THE DRAGON",),
         ("EXCHANGE OF APPLES",),
         ("A MESSAGE FROM JUPITER",),
@@ -16,7 +16,7 @@ LINES = {
         ["key goes here"]
     ),
 
-    'jesus': (
+    'jesus': (  # 2m 24.8 seconds
         ("AN UNWANTED CHILD", "CHOSEN BY THE PEOPLE", "A COUNCIL OF THREE"),
         ("WITH BLOOD ON HIS HAND", "LIFE IN THE TEMPLE", "SCHOLASTIC ARGUMENTS"),
         ("A GIFT TO A KING", "SUMMONED TO HEAVEN", "A MODEL OF PERFECTION", "A CONFUSION OF PROMISES"),
@@ -53,7 +53,7 @@ LINES = {
         ["key goes here"]
     ),
 
-    'journey': (
+    'journey': (  # 0.6 seconds
         ("RETURNING HOME", "THE SHIPS ARE AT SEA"),
         ("THE PIRATES WON THE PRIZE",),
         ("SUMMONED TO HEAVEN", "HE RETURNS WITH HER FATHER", "JOURNEY BY WATER", "JOURNEY IN DISGUISE"),
