@@ -72,7 +72,7 @@ LINES = {
         ["key goes here"]
     ),
 
-    'butterflies' (
+    'butterflies': (
 	("OF A PRINCE IN THE EAST"),
 	("THE PIRATES WON THE PRIZE", "WITH BLOOD ON HIS HAND"),
 	("TIME OF LAMPLIGHT", "A MESSAGE FROM JUPITER"),
