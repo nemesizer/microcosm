@@ -1,6 +1,5 @@
 import gc
 import itertools
-from functools import cache
 from multiprocessing import Pool
 from sys import argv
 from time import perf_counter
@@ -22,14 +21,9 @@ if len(argv) >= 3:
 combinations = [list(line) for line in itertools.product(*LINES[theme])]
 
 
-@cache
-def not_word_english(word):
-    return word not in words
-
-
 def contains_words(msg):
     for word in msg.split(' '):
-        if not_word_english(word):
+        if word not in words:
             return False
     return True
 
