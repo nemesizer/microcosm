@@ -1,11 +1,13 @@
 import gc
 import itertools
+import random
+
 from multiprocessing import Pool
 from sys import argv
 from time import perf_counter
-
 from nltk.corpus import words as english
 
+from book import BOOK
 from data import LINES, keys
 
 words = set(english.words())
@@ -18,8 +20,10 @@ start_idx = 0
 if len(argv) >= 3:
     start_idx = int(argv[2])
 
-combinations = [list(line) for line in itertools.product(*LINES[theme])]
-
+if ("random" not in argv):
+    combinations = [list(line) for line in itertools.product(*LINES[theme])]
+else:
+    combinations = []
 
 def contains_words(msg):
     for word in msg.split(' '):
@@ -43,6 +47,12 @@ def gen_message(m: list[int], offset: int):
             message += chr(m[i])
     return message
 
+def random_combination():
+    lines = []
+    for page in BOOK:
+       lines.append(random.choice(page))
+    lines.append("key goes here")
+    return lines
 
 def solve_lines_key(lines: list[str], key: str, offset: int):
 
@@ -64,9 +74,12 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     message = gen_message(m, offset)
 
     if contains_words(message):
+        print ()
+        print ("*****************************************")
         print(lines)
         print(key)
         print(message)
+        print ("*****************************************")
         print()
 
     del message
@@ -75,18 +88,31 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     del n
 
 
-def solve_key(key):
-    # import cProfile
-    # import pstats
+def solve_random_combinations(key):
+    key, offset = key
+    start = perf_counter()
+    local_start = start
 
+    max = 1000000
+
+    gc.collect()
+    gc.enable()
+
+    i = 0
+    while (i<max):
+        solve_lines_key(random_combination(), key, offset)
+        i += 1
+    time = perf_counter() - start
+    print(f'finished {max} lines for key {key} in {round(time * 1000, 3)}ms')
+
+   
+def solve_key(key):
     key, offset = key
     start = perf_counter()
     local_start = start
 
     gc.collect()
     gc.enable()
-
-    # with cProfile.Profile() as pr:
 
     for i in range(start_idx, len(combinations)):
         solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
@@ -96,18 +122,22 @@ def solve_key(key):
             print(f'Key {key} reached {i} in {now - local_start} seconds')
             local_start = now
 
-    # stats = pstats.Stats(pr)
-    # stats.sort_stats(pstats.SortKey.TIME)
-    # stats.print_stats()
-
     time = perf_counter() - start
     print(f'finished key {key} in {round(time * 1000, 3)}ms')
 
 
 def main():
-    print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
-    with Pool() as pool:
-        pool.map(solve_key, keys)
+    if ("random" in argv):
+        print(f'Kicking off {len(keys)} processes. Will run until stopped manually')
+    else:
+        print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
+
+    while(True):
+        with Pool() as pool:
+            if ("random" in argv):
+              pool.map(solve_random_combinations, keys)
+            else:
+              pool.map(solve_key, keys)
 
 
 if __name__ == '__main__':
