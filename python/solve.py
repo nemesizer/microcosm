@@ -58,7 +58,7 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     n = 0
     m = [0] * 20
 
-    lines = lines[offset - 1:] + lines[0:offset - 1]
+    lines = lines[offset - 1:-1] + lines[0:offset - 1] + [lines[-1]]
     lines[-1] = key
 
     for line in lines:
@@ -110,14 +110,14 @@ def solve_key(key: str):
     for i in range(start_idx, len(combinations)):
         solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
 
-        # log every 10 ** 5
-        if i % 10 ** 5 == 0 and i != 0:
-            now = perf_counter()
-            print(f'Key {key} reached {i} in {now - local_start} seconds')
-            local_start = now
+        # log every 10 ** 7
+        # if i % 10 ** 7 == 0 and i != 0:
+            # now = perf_counter()
+            # print(f'Key {key} reached {i} in {now - local_start} seconds')
+            # local_start = now
 
     diff = perf_counter() - start
-    print(f'finished key {key} in {round(diff * 1000, 3)}ms')
+    # print(f'finished key {key} in {round(diff * 1000, 3)}ms')
 
 
 def main():
