@@ -84,7 +84,7 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     del n
 
 
-def solve_random_combinations(key: str, n=1000000):
+def solve_random_combinations(key: str, n=10 ** 6):
     """
     Tries a bunch of random combinations. Won't log anything until it finds something.
     :param key:
@@ -138,3 +138,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
