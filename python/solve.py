@@ -55,12 +55,11 @@ def random_combination():
 
 
 def solve_lines_key(lines: list[str], key: str, offset: int):
-    lines[-1] = key
-
     n = 0
     m = [0] * 20
 
     lines = lines[offset - 1:] + lines[0:offset - 1]
+    lines[-1] = key
 
     for line in lines:
         for letter in line:
