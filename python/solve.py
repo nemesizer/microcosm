@@ -21,7 +21,10 @@ if len(argv) >= 3:
     start_idx = int(argv[2])
 
 if ("random" not in argv):
+    print ("SELECTING COMBINATIONS")
+    print (LINES[theme])
     combinations = [list(line) for line in itertools.product(*LINES[theme])]
+    print ("SELECTED")
 else:
     combinations = []
 
@@ -129,16 +132,13 @@ def solve_key(key):
 def main():
     if ("random" in argv):
         print(f'Kicking off {len(keys)} processes. Will run until stopped manually')
+        while(True):
+            with Pool() as pool:
+                pool.map(solve_random_combinations, keys)
     else:
         print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
-
-    while(True):
         with Pool() as pool:
-            if ("random" in argv):
-              pool.map(solve_random_combinations, keys)
-            else:
               pool.map(solve_key, keys)
-
 
 if __name__ == '__main__':
     main()
