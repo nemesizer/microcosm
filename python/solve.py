@@ -1,10 +1,11 @@
 import gc
 import itertools
 import random
-
+import time
 from multiprocessing import Pool
 from sys import argv
 from time import perf_counter
+
 from nltk.corpus import words as english
 
 from book import BOOK
@@ -28,6 +29,7 @@ if ("random" not in argv):
 else:
     combinations = []
 
+
 def contains_words(msg):
     for word in msg.split(' '):
         if word not in words:
@@ -38,7 +40,7 @@ def contains_words(msg):
 def gen_message(m: list[int], offset: int):
     message = ""
     for i in range(20):
-        #m[i] += offset
+        # m[i] += offset
         m[i] %= 26
         while m[i] > 0:
             m[i] -= 26
@@ -50,21 +52,16 @@ def gen_message(m: list[int], offset: int):
             message += chr(m[i])
     return message
 
+
 def random_combination():
-    lines = []
-    for page in BOOK:
-       lines.append(random.choice(page))
-    lines.append("key goes here")
-    return lines
+    return [random.choice(page) for page in BOOK] + ['key goes here']
+
 
 def solve_lines_key(lines: list[str], key: str, offset: int):
-
-    lines[13] = key
-
     n = 0
     m = [0] * 20
 
-    lines = lines[offset - 1:] + lines[0:offset - 1]
+    lines = lines[offset - 1:-1] + lines[0:offset - 1] + [key]
 
     for line in lines:
         for letter in line:
@@ -77,13 +74,11 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     message = gen_message(m, offset)
 
     if contains_words(message):
-        print ()
-        print ("*****************************************")
+        print("\n*****************************************")
         print(lines)
         print(key)
         print(message)
-        print ("*****************************************")
-        print()
+        print("*****************************************\n")
 
     del message
     del lines
@@ -91,25 +86,22 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     del n
 
 
-def solve_random_combinations(key):
+def solve_random_combinations(key: str, n=10 ** 6):
+    """
+    Tries a bunch of random combinations. Won't log anything until it finds something.
+    :param key:
+    :param n: number of combinations to try
+    """
     key, offset = key
-    start = perf_counter()
-    local_start = start
-
-    max = 1000000
 
     gc.collect()
     gc.enable()
 
-    i = 0
-    while (i<max):
+    for i in range(n):
         solve_lines_key(random_combination(), key, offset)
-        i += 1
-    time = perf_counter() - start
-    print(f'finished {max} lines for key {key} in {round(time * 1000, 3)}ms')
 
-   
-def solve_key(key):
+
+def solve_key(key: str):
     key, offset = key
     start = perf_counter()
     local_start = start
@@ -120,13 +112,14 @@ def solve_key(key):
     for i in range(start_idx, len(combinations)):
         solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
 
-        if i % 10 ** 5 == 0 and i != 0:
-            now = perf_counter()
-            print(f'Key {key} reached {i} in {now - local_start} seconds')
-            local_start = now
+        # log every 10 ** 7
+        # if i % 10 ** 7 == 0 and i != 0:
+            # now = perf_counter()
+            # print(f'Key {key} reached {i} in {now - local_start} seconds')
+            # local_start = now
 
-    time = perf_counter() - start
-    print(f'finished key {key} in {round(time * 1000, 3)}ms')
+    diff = perf_counter() - start
+    # print(f'finished key {key} in {round(diff * 1000, 3)}ms')
 
 
 def main():
@@ -135,6 +128,8 @@ def main():
         while(True):
             with Pool() as pool:
                 pool.map(solve_random_combinations, keys)
+                # just not to overwork the cpu idk
+                time.sleep(1)
     else:
         print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
         with Pool() as pool:
@@ -142,3 +137,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -170,6 +170,7 @@ keys = (
 ("HTJXDUFPLITWUYLCLTSO", 13)
 """
 
+# populate 'all'
 for i, page in enumerate(BOOK):
     for j, line in enumerate(page):
         LINES['all'][i].append(line)
