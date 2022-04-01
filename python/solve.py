@@ -58,8 +58,7 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     n = 0
     m = [0] * 20
 
-    lines = lines[offset - 1:-1] + lines[0:offset - 1] + [lines[-1]]
-    lines[-1] = key
+    lines = lines[offset - 1:-1] + lines[0:offset - 1] + [key]
 
     for line in lines:
         for letter in line:
