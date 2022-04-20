@@ -24,8 +24,9 @@ if len(argv) >= 3:
 if ("random" not in argv):
     print ("SELECTING COMBINATIONS")
     print (LINES[theme])
+    count = 0
     combinations = [list(line) for line in itertools.product(*LINES[theme])]
-    print ("SELECTED")
+    print ("SELECTED " + str(len(combinations)) + " COMBINATIONS")
 else:
     combinations = []
 
@@ -61,7 +62,9 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
     n = 0
     m = [0] * 20
 
-    lines = lines[offset - 1:-1] + lines[0:offset - 1] + [key]
+    lines = lines[offset - 1:-1] + [key] + lines[0:offset - 1] 
+
+    assert (len(lines) == 14)
 
     for line in lines:
         for letter in line:
@@ -75,8 +78,10 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
 
     if contains_words(message):
         print("\n*****************************************")
+        print("Offset = " + str(offset))
         print(lines)
         print(key)
+        print("*****************************************")
         print(message)
         print("*****************************************\n")
 
@@ -99,6 +104,8 @@ def solve_random_combinations(key: str, n=10 ** 6):
 
     for i in range(n):
         solve_lines_key(random_combination(), key, offset)
+        if (offset > 1):
+            solve_lines_key(random_combination(), key, 1)
 
 
 def solve_key(key: str):
@@ -111,6 +118,8 @@ def solve_key(key: str):
 
     for i in range(start_idx, len(combinations)):
         solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
+        if (offset > 1):
+            solve_lines_key([*(str(line) for line in combinations[i])], key, 1)
 
         # log every 10 ** 7
         # if i % 10 ** 7 == 0 and i != 0:
