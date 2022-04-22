@@ -11,7 +11,8 @@ from nltk.corpus import words as english
 from book import BOOK
 from data import LINES, keys
 
-words = set(english.words())
+words = set(word.lower() for word in english.words())
+
 # theme defaults to 'computer', since it's quick... 
 # specify the theme you want on the command line, such as:
 # python solve.py washington

@@ -174,4 +174,10 @@ keys = [
     ["JLIFDEPEKIUTCRBLWRLG", 10],
     ["BKXKWEBUZOXSZCIFLAYC", 7],
     ["PPRBIMCYJVRLKVXPUUGF", 11],
+    # let's include the five keys from the final page as well, just in case:
+    ["HMTFSDTGQJCIAZLDDCWB", 1],
+    ["APYHZHJMCWURMHPFWVIK", 1],
+    ["JQQZOZRUZPZRQSHBUQJE", 1],
+    ["FZYMVFQGZOKDLJMIMPGQ", 1],
+    ["HTJXDUFPLITWUYLCLTSO", 1],
 ]
