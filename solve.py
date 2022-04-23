@@ -94,12 +94,8 @@ def solve_lines_key(lines: list[str], key: str, offset: int):
         print("*****************************************")
         print(message)
         print("*****************************************\n")
-
-    del message
-    del lines
-    del m
-    del n
-
+        return True
+    return False
 
 def solve_random_combinations(key: str, n=10 ** 6):
     """
@@ -126,11 +122,15 @@ def solve_key(key: str):
 
     gc.collect()
     gc.enable()
+    found = False
 
     for i in range(0, len(combinations)):
-        solve_lines_key([*(str(line) for line in combinations[i])], key, offset)
+        if (solve_lines_key([*(str(line) for line in combinations[i])], key, offset)):
+            found = True
         if (offset > 1):
-            solve_lines_key([*(str(line) for line in combinations[i])], key, 1)
+            if (solve_lines_key([*(str(line) for line in combinations[i])], key, 1)):
+                found = True
+    return found
 
 
 def main():
@@ -139,12 +139,13 @@ def main():
         while(True):
             with Pool() as pool:
                 pool.map(solve_random_combinations, keys)
-                # just not to overwork the cpu idk
-                time.sleep(1)
     else:
         print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
         with Pool() as pool:
-              pool.map(solve_key, keys)
+            found = pool.map(solve_key, keys)
+        if (not (True in found)):
+            print ("No messages found. Sorry...\n")
+            
 
 if __name__ == '__main__':
     main()
