@@ -41,7 +41,7 @@ def contains_words(msg):
     return True
 
 
-def gen_message(m: list[int], offset: int):
+def gen_message(m, offset):
     # generate the final output message
     message = ""
     for i in range(20):
@@ -63,7 +63,7 @@ def random_combination():
     return [random.choice(page) for page in BOOK] + ['key goes here']
 
 
-def solve_lines_key(lines: list[str], key: str, offset: int):
+def solve_lines_key(lines, key, offset):
     n = 0
     m = [0] * 20
 

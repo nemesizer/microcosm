@@ -1,5 +1,5 @@
 # the text of all the verses in the book:
-BOOK: list[list[str]] = [
+BOOK = [
     [  # 1
         "OF A PRINCE IN THE EAST",
         "A MAN OF NATURE",
