@@ -4,7 +4,6 @@ import random
 import time
 from multiprocessing import Pool
 from sys import argv
-from time import perf_counter
 
 from nltk.corpus import words as english
 
@@ -25,7 +24,6 @@ if len(argv) >= 2:
 if ("random" not in argv):
     print ("SELECTING COMBINATIONS")
     print (LINES[theme])
-    count = 0
     combinations = [list(line) for line in itertools.product(*LINES[theme])]
     print ("SELECTED " + str(len(combinations)) + " COMBINATIONS")
 else:
@@ -41,7 +39,7 @@ def contains_words(msg):
     return True
 
 
-def gen_message(m, offset):
+def gen_message(m):
     # generate the final output message
     message = ""
     for i in range(20):
@@ -67,6 +65,7 @@ def solve_lines_key(lines, key, offset):
     n = 0
     m = [0] * 20
 
+
     # apply an offset. This means instead of starting at line 1,
     # we start with the line specified by the offset, and then
     # cycle back round to the beginning.
@@ -84,7 +83,7 @@ def solve_lines_key(lines, key, offset):
             if n == 20:
                 n = 0
 
-    message = gen_message(m, offset)
+    message = gen_message(m)
 
     if contains_words(message):
         print("\n*****************************************")
@@ -117,8 +116,6 @@ def solve_random_combinations(key: str, n=10 ** 6):
 
 def solve_key(key: str):
     key, offset = key
-    start = perf_counter()
-    local_start = start
 
     gc.collect()
     gc.enable()
@@ -139,6 +136,7 @@ def main():
         while(True):
             with Pool() as pool:
                 pool.map(solve_random_combinations, keys)
+                print ("Completed 1,000,000 combinations")
     else:
         print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
         with Pool() as pool:
