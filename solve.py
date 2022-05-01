@@ -32,11 +32,20 @@ else:
 
 def contains_words(msg):
     # determine if a message is made up exclusively of English words or not:
+    longest_length = 0
+    real_words = True
     for word in msg.split(' '):
         if word not in words:
             # message contains something which is not an English word
-            return False
-    return True
+            real_words = False
+        else:
+            if (longest_length > len(word)):
+                longest_length = len(word)
+
+    if (longest_length > 4):
+        return True
+    else:
+        return real_words
 
 
 def gen_message(m):
@@ -96,7 +105,7 @@ def solve_lines_key(lines, key, offset):
         return True
     return False
 
-def solve_random_combinations(key: str, n=10 ** 6):
+def solve_random_combinations(key: str, n=10 ** 7):
     """
     Tries a bunch of random combinations. Won't log anything until it finds something.
     :param key:
@@ -136,7 +145,7 @@ def main():
         while(True):
             with Pool() as pool:
                 pool.map(solve_random_combinations, keys)
-                print ("Completed 1,000,000 combinations")
+                print ("Completed 10,000,000 combinations")
     else:
         print(f'Kicking off {len(keys)} processes to go through {len(combinations)} combinations each')
         with Pool() as pool:
