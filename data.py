@@ -281,4 +281,6 @@ keys = [
     ["JQQZOZRUZPZRQSHBUQJE", 1],
     ["FZYMVFQGZOKDLJMIMPGQ", 1],
     ["HTJXDUFPLITWUYLCLTSO", 1],
+    # and the key included in the original code but nowhere else:
+    ["NDOUSNNWQQWNKCUPXOZQ", 1],
 ]
