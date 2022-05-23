@@ -254,8 +254,25 @@ LINES = {
         ["DEATH AROUND MIDNIGHT", "A FALSE ACCUSATION", "A PEACEFUL CONCLUSION"],
         ["key goes here"]
 
+    ],
+    'intro': [
+        ["T"],
+        ["Y"],
+        ["P"],
+        ["E"],
+        [" "],
+        ["I"],
+        ["N"],
+        [" "],
+        ["L"],
+        ["I"],
+        ["N"],
+        ["E"],
+        ["S"],
+        ["key goes here"]
     ]
 }
+
 
 # this list contains pairs of 20-character key strings plus the corresponding L values
 keys = [

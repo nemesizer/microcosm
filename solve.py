@@ -34,7 +34,7 @@ def contains_words(msg):
     # determine if a message is made up exclusively of English words or not:
     longest_length = 0
     real_words = True
-    for word in msg.split(' '):
+    for word in msg.split():
         if word not in words:
             # message contains something which is not an English word
             real_words = False
@@ -42,7 +42,7 @@ def contains_words(msg):
             if (longest_length > len(word)):
                 longest_length = len(word)
 
-    if (longest_length > 4):
+    if (longest_length > 3):
         return True
     else:
         return real_words
