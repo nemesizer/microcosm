@@ -34,7 +34,7 @@ else:
 
 def contains_words(msg):
     # determine if a message is made up exclusively of English words or not:
-    for word in msg.split(' '):
+    for word in msg.strip().split(' '):
         if word not in words:
             # message contains something which is not an English word
             return False

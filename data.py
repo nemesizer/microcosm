@@ -16,6 +16,40 @@ LINES = {
         ["key goes here"]
     ],
 
+    'galileo': [
+        ["OF A MUSICIAN",],
+        ["SCHOLASTIC ARGUMENTS",],
+        ["TIME OF LAMPLIGHT",],
+        ["A POOR SCHOLAR",],
+        ["TIED TO A CHAIR",],
+        ["THEY TUMBLE TOGETHER",],
+        ["THE NONCONFORMIST",],
+        ["THE DISTANT MOUNTAINS",],
+        ["BEHOLD JUPITERS CHILDREN",],
+        ["TWO DAUGHTERS ONE HUSBAND",],
+        ["TRIED BY PRIESTS",],
+        ["YEARS OF CAPTIVITY",],
+        ["LAND OF THE CYCLOPS",],
+        ["key goes here"]
+    ],
+
+    'bottomley': [
+        ["CHOSEN BY THE PEOPLE",],
+        ["A BOND IS MADE",],
+        ["A CONFUSION OF PROMISES",],
+        ["LONDON JOINS PARIS",],
+        ["RUNNER OF CONTRABAND",],
+        ["MANY DREAM OF RICHES",],
+        ["WOUNDED BY THE TRUTH",],
+        ["HE REJECTS A PROPOSAL",],
+        ["A DUAL IN COURT",],
+        ["THE ACCUSER IS SILENCED",],
+        ["THE CONTEST RENEWED",],
+        ["YEARS OF CAPTIVITY",],
+        ["DIED IN POVERTY",],
+        ["key goes here"]
+    ],
+
     'jesus': [  
         ["AN UNWANTED CHILD", "A COUNCIL OF THREE", "RETURNING HOME", "OF LOVE BETWEEN ENEMIES"],
         ["WITH BLOOD ON HIS HAND", "LIFE IN THE TEMPLE", "SCHOLASTIC ARGUMENTS", "THEY MUST DANCE", "TO THE FIRST OF THE HOSUE"],
@@ -180,3 +214,5 @@ keys = [
     ["FZYMVFQGZOKDLJMIMPGQ", 1],
     ["HTJXDUFPLITWUYLCLTSO", 1],
 ]
+
+
