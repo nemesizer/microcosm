@@ -35,7 +35,7 @@ def contains_words(msg):
     for word in msg.strip().split(' '):
         if word not in words:
             # message contains something which is not an English word
-            return False`
+            return False
     return True
 
 def gen_message(m):
